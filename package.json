@@ -1,0 +1,57 @@
+{
+    "name": "babel-compiler",
+    "displayName": "babel-compiler",
+    "description": "a babel transform extension",
+    "version": "0.0.1",
+    "publisher": "babel-compiler",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "workspaceContains:**/*.js",
+        "onLanguage:js"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "babelCompiler.command.watchJS",
+                "title": "WatchJS",
+                "category": "babelCompiler"
+            },
+            {
+                "command": "babelCompiler.command.stopWatchJS",
+                "title": "stopWatchJS",
+                "category": "babelCompiler"
+            },
+            {
+                "command": "babelCompiler.command.oneTimeCompileJS",
+                "title": "oneTimeCompileJS",
+                "category": "babelCompiler"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "babel-preset-env": "^1.6.1",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "@types/babel-core": "^6.25.3",
+        "@types/glob": "^5.0.35",
+        "babel-core": "^6.26.0",
+        "glob": "^7.1.2"
+    }
+}
