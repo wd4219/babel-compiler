@@ -1,5 +1,3 @@
-// import * as fs from 'fs';
-// import * as path from 'path';
 import {transformFile} from 'babel-core';
 
 
@@ -11,7 +9,7 @@ export class BabelCompile{
     return new Promise((resolve,reject)=>{
       transformFile(jsPath,options,function(err,result){
         if(err){
-          reject(err);
+          reject('语法出错');
         }
         else{
           resolve(result);

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as path  from 'path';
 
 export class FileHelper{
   public static get instance(){
@@ -6,10 +7,10 @@ export class FileHelper{
   }
 
   writeToOneFile(targetFileUri:string,data:any){
-    return new Promise<any>((resolve,reject)=>{
-      fs.writeFile(targetFileUri,data,'utf-8',(err)=>{
+    return new Promise((resolve,reject)=>{
+      fs.writeFile(targetFileUri,data.code,'utf-8',(err)=>{
         if(err){
-        reject(err);          
+          reject(err);          
         }
         else{
           resolve(true);
@@ -17,4 +18,11 @@ export class FileHelper{
       });
     });
   }
+  MakeDirIfNotAvailable(dir:string) {
+    if (fs.existsSync(dir)) return;
+    if (!fs.existsSync(path.dirname(dir))) {
+        this.MakeDirIfNotAvailable(path.dirname(dir));
+    }
+    fs.mkdirSync(dir);
+}
 }

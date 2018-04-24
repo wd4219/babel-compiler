@@ -32,7 +32,32 @@
                 "title": "oneTimeCompileJS",
                 "category": "babelCompiler"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "Babel Compiler config",
+            "properties": {
+                "BabelCompiler.settings.options": {
+                    "type": "object",
+                    "default": {
+                        "babel": {
+                            "presets": [
+                                "env"
+                            ]
+                        },
+                        "savePath": "~/../scripts/"
+                    }
+                },
+                "BabelCompiler.settings.excludeList": {
+                    "type": "array",
+                    "default": [
+                        "**/node_modules/**",
+                        ".vscode/**",
+                        "**/scripts/**"
+                    ],
+                    "description": "ignore some folder"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -44,9 +69,8 @@
     "devDependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
-        "babel-preset-env": "^1.6.1",
         "typescript": "^2.6.1",
-        "vscode": "^1.1.6"
+        "vscode": "^1.0.0"
     },
     "dependencies": {
         "@types/babel-core": "^6.25.3",
