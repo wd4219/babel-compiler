@@ -83,7 +83,7 @@ export class DealModel {
       fileUri = activeTextEditor.document.fileName;
     }
     if (fileUri.endsWith('.js')) {
-      this.transformAll().catch(e => {
+      this.transformJs(fileUri).catch(e => {
         if (e.fileUri) {
           vscode.window.showErrorMessage(e.fileUri + '文件有语法错误');
         }
