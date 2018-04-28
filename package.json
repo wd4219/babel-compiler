@@ -2,7 +2,7 @@
     "name": "babel-compiler",
     "displayName": "babel-compiler",
     "description": "a babel transform extension",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "babel-compiler",
     "engines": {
         "vscode": "^1.20.0"
@@ -70,12 +70,13 @@
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
         "typescript": "^2.6.1",
-        "vscode": "^1.0.0"
+        "vscode": "^1.1.14"
     },
     "dependencies": {
         "@types/babel-core": "^6.25.3",
         "@types/glob": "^5.0.35",
         "babel-core": "^6.26.0",
-        "glob": "^7.1.2"
+        "glob": "^7.1.2",
+        "minimatch": "^3.0.4"
     }
 }

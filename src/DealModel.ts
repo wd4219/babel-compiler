@@ -5,6 +5,7 @@ import { FileHelper } from './FileHelper';
 import * as glob from 'glob';
 import * as path from 'path';
 import { Helper, IFormat } from './Helper';
+import * as minimatch from 'minimatch';
 
 export interface FilePath{
   filePaths:string
@@ -82,7 +83,11 @@ export class DealModel {
     if (activeTextEditor) {
       fileUri = activeTextEditor.document.fileName;
     }
-    if (fileUri.endsWith('.js')) {
+    let ignore = Helper.getConfigSettings<string[]>('excludeList');
+    let filterArr = ignore.filter((item)=>{
+      return minimatch(fileUri,item);
+    });
+    if (fileUri.endsWith('.js') && filterArr.length == 0) {
       this.transformJs(fileUri).catch(e => {
         if (e.fileUri) {
           vscode.window.showErrorMessage(e.fileUri + '文件有语法错误');
