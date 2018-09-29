@@ -6,6 +6,7 @@ import * as glob from 'glob';
 import * as path from 'path';
 import { Helper, IFormat } from './Helper';
 import * as minimatch from 'minimatch';
+import { OutputWindow } from './OutputWindow';
 
 export interface FilePath{
   filePaths:string
@@ -42,6 +43,7 @@ export class DealModel {
     }).catch(e => {
       if (e.fileUri) {
         vscode.window.showErrorMessage(e.fileUri + '文件有语法错误');
+        OutputWindow.Show(e.fileUri+ '   第 '+ e.err.loc.line + ' 行有语法错误',[]);
       }
       if (!watchModel) {
         this.isWatching = true;
@@ -91,6 +93,7 @@ export class DealModel {
       this.transformJs(fileUri).catch(e => {
         if (e.fileUri) {
           vscode.window.showErrorMessage(e.fileUri + '文件有语法错误');
+          OutputWindow.Show(e.fileUri+ '   第 '+ e.err.loc.line + ' 行有语法错误',[]);
         }
       });
     }

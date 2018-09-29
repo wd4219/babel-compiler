@@ -9,7 +9,7 @@ export class BabelCompile{
     return new Promise((resolve,reject)=>{
       transformFile(jsPath,options,function(err,result){
         if(err){
-          reject('语法出错');
+          reject(err);
         }
         else{
           resolve(result);
